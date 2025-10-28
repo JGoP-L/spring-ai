@@ -54,7 +54,7 @@ import org.springframework.lang.Nullable;
  *     }
  *
  *
-@Override
+&#64;Override
  *     public ToolDefinition getToolDefinition() {
  *         return ToolDefinition.builder()
  *             .name("get_weather")
@@ -91,6 +91,7 @@ import org.springframework.lang.Nullable;
  * <td>83%</td>
  * </tr>
  * </table>
+ *
  * @author Spring AI Team
  * @since 1.2.0
  * @see ToolCallback

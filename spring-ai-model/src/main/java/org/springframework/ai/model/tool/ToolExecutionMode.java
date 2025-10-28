@@ -80,7 +80,7 @@ public enum ToolExecutionMode {
 	 * <h3>示例</h3> <pre>{@code
 	 * &#64;Component
 	 * public class AsyncWeatherTool implements AsyncToolCallback {
-	 *     @Override
+	 *     &#64;Override
 	 *     public Mono<String> callAsync(String input, ToolContext context) {
 	 *         // 网络I/O，适合异步模式
 	 *         return webClient.get()
@@ -149,7 +149,7 @@ public enum ToolExecutionMode {
 	 * // 未来可能的API
 	 * &#64;Component
 	 * public class StreamingAnalysisTool implements StreamingToolCallback {
-	 *     @Override
+	 *     &#64;Override
 	 *     public Flux<ToolExecutionChunk> executeStreaming(String input) {
 	 *         return Flux.interval(Duration.ofSeconds(1))
 	 *             .take(10)
