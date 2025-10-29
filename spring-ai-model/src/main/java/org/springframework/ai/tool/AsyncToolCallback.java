@@ -154,6 +154,20 @@ public interface AsyncToolCallback extends ToolCallback {
 	}
 
 	/**
+	 * 同步执行工具调用（向后兼容 - 单参数版本）。
+	 *
+	 * <p>
+	 * 默认实现会调用双参数版本的{@link #call(String, ToolContext)}。
+	 * @param toolInput 工具输入参数（JSON格式）
+	 * @return 工具执行结果
+	 * @throws org.springframework.ai.tool.execution.ToolExecutionException 如果工具执行失败
+	 */
+	@Override
+	default String call(String toolInput) {
+		return call(toolInput, null);
+	}
+
+	/**
 	 * 同步执行工具调用（向后兼容）。
 	 *
 	 * <p>
