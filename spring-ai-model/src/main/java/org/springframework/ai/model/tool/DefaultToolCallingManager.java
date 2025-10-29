@@ -226,9 +226,9 @@ public final class DefaultToolCallingManager implements ToolCallingManager {
 
 		for (AssistantMessage.ToolCall toolCall : assistantMessage.getToolCalls()) {
 
-			logger.debug("Executing tool call: {}", toolCall.name());
-
 			String toolName = toolCall.name();
+
+			logger.debug("Executing tool call: {} (synchronous mode)", toolName);
 			String toolInputArguments = toolCall.arguments();
 
 			// Handle the possible null parameter situation in streaming mode.
@@ -250,6 +250,12 @@ public final class DefaultToolCallingManager implements ToolCallingManager {
 			if (toolCallback == null) {
 				logger.warn(POSSIBLE_LLM_TOOL_NAME_CHANGE_WARNING, toolName);
 				throw new IllegalStateException("No ToolCallback found for tool name: " + toolName);
+			}
+
+			// Log tool type information for performance awareness
+			if (toolCallback instanceof AsyncToolCallback) {
+				logger.debug("Tool '{}' implements AsyncToolCallback but executing in synchronous mode. "
+						+ "Consider using executeToolCallsAsync() for better performance.", toolName);
 			}
 
 			if (returnDirect == null) {
